@@ -4,6 +4,8 @@ let difficultyIncreaseInterval; // Intervalo para aumentar a dificuldade
 const backgroundVideo = document.getElementById('background-video'); // Certifique-se de ter um ID correspondente no HTML
 let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
 
+backgroundVideo.style.filter = 'brightness(50%)';
+
 if (highScore > 999) {
   highScore = 0;
   localStorage.setItem('highScore', highScore); // Reseta para 0 se estiver muito alto
