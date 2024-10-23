@@ -51,7 +51,7 @@ const keys = ['a', 's', 'd', 'f'];
 let score = 0;
 let notes = [];
 let mistakes = 0;
-const maxMistakes = 3;
+const maxMistakes = 6;
 
 let noteInterval;
 let moveInterval;
