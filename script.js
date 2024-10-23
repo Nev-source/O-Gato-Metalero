@@ -29,7 +29,7 @@ backgroundVideo.addEventListener('canplay', function() {
 function increaseDifficulty() {
   // Diminui o intervalo de criação de notas até um limite mínimo
   if (noteCreationInterval > 260) {
-    noteCreationInterval -= 80; // Diminui o tempo entre as notas
+    noteCreationInterval -= 55; // Diminui o tempo entre as notas
     clearInterval(noteInterval);
     noteInterval = setInterval(createNote, noteCreationInterval);
   }
