@@ -28,14 +28,14 @@ backgroundVideo.addEventListener('canplay', function() {
 
 function increaseDifficulty() {
   // Diminui o intervalo de criação de notas até um limite mínimo
-  if (noteCreationInterval > 350) {
+  if (noteCreationInterval > 330) {
     noteCreationInterval -= 80; // Diminui o tempo entre as notas
     clearInterval(noteInterval);
     noteInterval = setInterval(createNote, noteCreationInterval);
   }
 
   // Aumenta a velocidade das notas até um limite máximo
-  if (noteSpeed < 22) {
+  if (noteSpeed < 24) {
     noteSpeed += 1.3; // Aumenta a velocidade de movimento das notas
   }
 }
@@ -180,8 +180,8 @@ function startGame() {
     moveNotes();
   }, 50);
 
-  // Aumenta a dificuldade a cada 9 segundos
-  difficultyIncreaseInterval = setInterval(increaseDifficulty, 9000);
+  // Aumenta a dificuldade a cada 8 segundos
+  difficultyIncreaseInterval = setInterval(increaseDifficulty, 8000);
   
   displayHighScore(); // Exibe o recorde ao iniciar o jogo
 }
