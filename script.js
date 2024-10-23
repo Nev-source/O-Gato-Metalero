@@ -36,7 +36,7 @@ function increaseDifficulty() {
 
   // Aumenta a velocidade das notas até um limite máximo
   if (noteSpeed < 24) {
-    noteSpeed += 1.3; // Aumenta a velocidade de movimento das notas
+    noteSpeed += 1.5; // Aumenta a velocidade de movimento das notas
   }
 }
 
