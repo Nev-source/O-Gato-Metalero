@@ -28,15 +28,15 @@ backgroundVideo.addEventListener('canplay', function() {
 
 function increaseDifficulty() {
   // Diminui o intervalo de criação de notas até um limite mínimo
-  if (noteCreationInterval > 100) {
-    noteCreationInterval -= 100; // Diminui o tempo entre as notas
+  if (noteCreationInterval > 350) {
+    noteCreationInterval -= 80; // Diminui o tempo entre as notas
     clearInterval(noteInterval);
     noteInterval = setInterval(createNote, noteCreationInterval);
   }
 
   // Aumenta a velocidade das notas até um limite máximo
-  if (noteSpeed < 50) {
-    noteSpeed += 1.5; // Aumenta a velocidade de movimento das notas
+  if (noteSpeed < 22) {
+    noteSpeed += 1.3; // Aumenta a velocidade de movimento das notas
   }
 }
 
@@ -45,10 +45,9 @@ const lines = {
   's': document.getElementById('line-s'),
   'd': document.getElementById('line-d'),
   'f': document.getElementById('line-f'),
-  'g': document.getElementById('line-g')
 };
 
-const keys = ['a', 's', 'd', 'f', 'g'];
+const keys = ['a', 's', 'd', 'f'];
 let score = 0;
 let notes = [];
 let mistakes = 0;
@@ -108,7 +107,7 @@ function checkKeyPress(event) {
         }, 200);
 
         // Inicia o vídeo quando a pontuação atingir 50
-        if (score === 50) {
+        if (score === 100) {
           startBackgroundVideo();
         }
       }
@@ -147,7 +146,7 @@ function restartGame() {
   score = 0;
   mistakes = 0;
   noteCreationInterval = 800;
-  noteSpeed = 12;
+  noteSpeed =12;
   
   document.getElementById('score').textContent = `Score: ${score}`;
   document.getElementById('high-score').textContent = `Recorde: ${highScore}`; // Exibe o recorde ao reiniciar
@@ -181,8 +180,8 @@ function startGame() {
     moveNotes();
   }, 50);
 
-  // Aumenta a dificuldade a cada 8 segundos
-  difficultyIncreaseInterval = setInterval(increaseDifficulty, 8000);
+  // Aumenta a dificuldade a cada 9 segundos
+  difficultyIncreaseInterval = setInterval(increaseDifficulty, 9000);
   
   displayHighScore(); // Exibe o recorde ao iniciar o jogo
 }
