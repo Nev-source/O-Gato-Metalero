@@ -4,7 +4,7 @@ let difficultyIncreaseInterval; // Intervalo para aumentar a dificuldade
 const backgroundVideo = document.getElementById('background-video'); // Certifique-se de ter um ID correspondente no HTML
 let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
 
-backgroundVideo.style.filter = 'brightness(30%)';
+backgroundVideo.style.filter = 'brightness(100%)';
 
 if (highScore > 999) {
   highScore = 0;
@@ -100,16 +100,26 @@ function checkKeyPress(event) {
         score++;
         document.getElementById('score').textContent = `Score: ${score}`;
 
-        // Adiciona o flash branco ao acertar
-        line.classList.add('flash-white');
-        setTimeout(() => {
-          line.classList.remove('flash-white');
-        }, 200);
+        // Cria o efeito de foguinho ao acertar
+        const fire = document.createElement('div');
+        fire.classList.add('fire-effect');
 
-        // Inicia o vídeo quando a pontuação atingir 50
-        if (score === 100) {
-          startBackgroundVideo();
-        }
+        // Chama principal (maior)
+        const flame = document.createElement('div');
+        flame.classList.add('fire-flame');
+        fire.appendChild(flame);
+
+        // Chama menor para dar um efeito mais realista
+        const smallFlame = document.createElement('div');
+        smallFlame.classList.add('fire-flame-small');
+        fire.appendChild(smallFlame);
+
+        line.appendChild(fire);
+
+        // Remove o foguinho após a animação
+        setTimeout(() => {
+          fire.remove();
+        }, 400);  // Duração da animação
       }
     }
   }
@@ -161,10 +171,6 @@ function restartGame() {
   clearInterval(noteInterval);
   clearInterval(moveInterval);
   clearInterval(difficultyIncreaseInterval);
-
-  backgroundVideo.pause();
-  backgroundVideo.currentTime = 0; // Reinicia o vídeo para o início
-  backgroundVideo.style.display = 'none'; // Oculta o vídeo
   
   startGame();
 }

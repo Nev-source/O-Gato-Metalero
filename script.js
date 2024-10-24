@@ -4,7 +4,7 @@ let difficultyIncreaseInterval; // Intervalo para aumentar a dificuldade
 const backgroundVideo = document.getElementById('background-video'); // Certifique-se de ter um ID correspondente no HTML
 let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
 
-backgroundVideo.style.filter = 'brightness(30%)';
+backgroundVideo.style.filter = 'brightness(100%)';
 
 if (highScore > 999) {
   highScore = 0;
@@ -105,19 +105,9 @@ function checkKeyPress(event) {
         setTimeout(() => {
           line.classList.remove('flash-white');
         }, 200);
-
-        // Inicia o vídeo quando a pontuação atingir 50
-        if (score === 100) {
-          startBackgroundVideo();
-        }
       }
     }
   }
-}
-
-function startBackgroundVideo() {
-  backgroundVideo.style.display = 'block';  // Torna o vídeo visível
-  backgroundVideo.play(); // Inicia o vídeo
 }
 
 function registerMistake() {
@@ -161,10 +151,6 @@ function restartGame() {
   clearInterval(noteInterval);
   clearInterval(moveInterval);
   clearInterval(difficultyIncreaseInterval);
-
-  backgroundVideo.pause();
-  backgroundVideo.currentTime = 0; // Reinicia o vídeo para o início
-  backgroundVideo.style.display = 'none'; // Oculta o vídeo
   
   startGame();
 }
