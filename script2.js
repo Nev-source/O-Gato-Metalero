@@ -1,5 +1,5 @@
-let noteCreationInterval = 800; // Tempo inicial para criar notas
-let noteSpeed = 12; // Velocidade inicial das notas
+let noteCreationInterval = 355; // Tempo inicial para criar notas
+let noteSpeed = 25; // Velocidade inicial das notas
 let difficultyIncreaseInterval; // Intervalo para aumentar a dificuldade
 const backgroundVideo = document.getElementById('background-video'); // Certifique-se de ter um ID correspondente no HTML
 let highScore = localStorage.getItem('highScore') ? parseInt(localStorage.getItem('highScore')) : 0;
@@ -28,14 +28,14 @@ backgroundVideo.addEventListener('canplay', function() {
 
 function increaseDifficulty() {
   // Diminui o intervalo de criação de notas até um limite mínimo
-  if (noteCreationInterval > 260) {
-    noteCreationInterval -= 55; // Diminui o tempo entre as notas
+  if (noteCreationInterval > 250) {
+    noteCreationInterval -= 50; // Diminui o tempo entre as notas
     clearInterval(noteInterval);
     noteInterval = setInterval(createNote, noteCreationInterval);
   }
 
   // Aumenta a velocidade das notas até um limite máximo
-  if (noteSpeed < 27) {
+  if (noteSpeed < 37) {
     noteSpeed += 1.5; // Aumenta a velocidade de movimento das notas
   }
 }
@@ -71,7 +71,7 @@ function createNote() {
 function moveNotes() {
   notes.forEach((note, index) => {
     const top = parseInt(note.style.top || -60);
-    if (top > 470 && note.dataset.missed === 'false') {
+    if (top > 490 && note.dataset.missed === 'false') {
       note.dataset.missed = 'true';
       lines[note.dataset.key].classList.add('flash');
       setTimeout(() => {
@@ -93,7 +93,7 @@ function checkKeyPress(event) {
     const note = notes.find(n => n.dataset.key === key && n.dataset.hit === 'false' && n.dataset.missed === 'false');
     if (note) {
       const notePosition = parseInt(note.style.top);
-      if (notePosition > 370 && notePosition < 520) {
+      if (notePosition > 340 && notePosition < 520) {
         note.dataset.hit = 'true';  // Marca a nota como acertada
         note.remove();  // Remove a nota da interface
         notes = notes.filter(n => n !== note);  // Remove a nota da lista de notas
@@ -145,8 +145,8 @@ function endGame() {
 function restartGame() {
   score = 0;
   mistakes = 0;
-  noteCreationInterval = 800;
-  noteSpeed =12;
+  noteCreationInterval = 300;
+  noteSpeed =25;
   
   document.getElementById('score').textContent = `Score: ${score}`;
   document.getElementById('high-score').textContent = `Recorde: ${highScore}`; // Exibe o recorde ao reiniciar
